@@ -77,7 +77,7 @@ adding_products = [
   { name: "スイカ", price: 1000 },
 ]
 # adding_products の商品を追加
-p greengrocer.register_product(adding_products)
+greengrocer.register_product(adding_products)
 FIRST_PRODUCTS_NUM = 30
 LAST_PRODUCTS_NUM = (FIRST_PRODUCTS_NUM + (greengrocer.products).size) - 1
 
