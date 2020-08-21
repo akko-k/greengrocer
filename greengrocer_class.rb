@@ -10,14 +10,14 @@ end
 
 class Greengrocer
   attr_reader :products
-  def initialize(products)
+  def initialize(product_params)
     @products = []
-    register_product(products)
+    register_product(product_params)
   end
   
-  def register_product(products)
-    # @products に products の各パラメータから生成した Product クラスのインスタンスを入れていく
-    products.each do |param|
+  def register_product(product_params)
+    # @products に product_params の各パラメータから生成した Product クラスのインスタンスを入れていく
+    product_params.each do |param|
       @products << Product.new(param)
     end
   end
@@ -62,13 +62,13 @@ class User
 
 end
 
-products = [
+product_params = [
   { name: "トマト", price: 100 },
   { name: "にんじん", price: 200 },
 ]
 
 # products の商品を持つ八百屋の開店
-greengrocer = Greengrocer.new(products)
+greengrocer = Greengrocer.new(product_params)
 #お客さんの来店
 user = User.new
 
@@ -77,9 +77,9 @@ adding_products = [
   { name: "スイカ", price: 1000 },
 ]
 # adding_products の商品を追加
-greengrocer.register_product(adding_products)
+p greengrocer.register_product(adding_products)
 FIRST_PRODUCTS_NUM = 30
-LAST_PRODUCTS_NUM = (FIRST_PRODUCTS_NUM + (products+adding_products).size) - 1
+LAST_PRODUCTS_NUM = (FIRST_PRODUCTS_NUM + (greengrocer.products).size) - 1
 
 # 商品を表示
 greengrocer.disp
