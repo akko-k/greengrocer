@@ -38,7 +38,7 @@ end
 
 class User
   attr_reader :selected_product
-  def initialize(selected_product:)
+  def initialize
     @selected_product = selected_product
   end
 
@@ -50,7 +50,6 @@ class User
       break if !selected_product.nil?
         puts "#{greengrocer.products.first.id}から#{greengrocer.products.last.id}の数字を入力してください"
     end
-    @selected_product
   end
 end
 
@@ -62,7 +61,7 @@ product_params1 = [
 # product_params1 の商品を持つ八百屋の開店
 greengrocer1 = Greengrocer.new(product_params1)
 #お客さんの来店
-user = User.new(selected_product: nil)
+user = User.new
 
 adding_products1 = [
   { name: "かぼちゃ", price: 300 },
