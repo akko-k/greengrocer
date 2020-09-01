@@ -47,8 +47,8 @@ class User
       print "商品を選択 >"
       selected_products_num = gets.to_i
       @selected_product = greengrocer.products.find{|product| product.id == selected_products_num}
-      break if !selected_product.nil?
-        puts "#{greengrocer.products.first.id}から#{greengrocer.products.last.id}の数字を入力してください"
+      break if !@selected_product.nil?
+      puts "#{greengrocer.products.first.id}から#{greengrocer.products.last.id}の数字を入力してください"
     end
   end
 end
