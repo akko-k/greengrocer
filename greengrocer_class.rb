@@ -34,12 +34,13 @@ class Greengrocer
   
   def disp
     puts "\n"
+    puts "いらっしゃいませ！"
     puts "商品を選んでください。"
-    puts "#{HR_STR}"
+    puts HR_STR
     @products.each do |product|
       puts "#{product.id}.#{product.name}" "(¥#{product.price})"
     end
-    puts "#{HR_STR}"
+    puts HR_STR
   end
 
   def ask_quantity(user)
@@ -48,7 +49,7 @@ class Greengrocer
   end
 
   def calculate_charges(user)
-    total_price = user.quantity_of_product * user.selected_product.price #合計金額
+    total_price = user.selected_product.price * user.quantity_of_product #合計金額
     discount_price = (total_price * DISCOUNT_RATE).floor #割引する金額
     after_discount_price = (total_price * AFTER_DISCOUNT_RATE).floor #割引後の金額
     if user.quantity_of_product >= DISCOUNT_STANDARD_VALUE #割引を適用する個数かどうかで条件分岐
