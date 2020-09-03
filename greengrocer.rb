@@ -1,17 +1,3 @@
-require "pry"
-require "active_support/core_ext/numeric/conversions"
-
-
-class Product
-  attr_reader :id, :name, :price, :count
-  @@count = 30
-  def initialize(name:, price:)
-    @id = @@count += 1
-    @name = name
-    @price = price
-  end
-end
-
 class Greengrocer
   attr_reader :products
 
@@ -62,59 +48,3 @@ class Greengrocer
     puts "お買い上げありがとうございました！"
   end
 end
-
-class User
-  attr_reader :selected_product, :quantity_of_product
-  def initialize
-    @selected_product = selected_product
-  end
-
-  def choose(greengrocer)
-    loop do
-      print "商品を選択 >"
-      selected_products_num = gets.to_i
-      puts "\n"
-      @selected_product = greengrocer.products.find{|product| product.id == selected_products_num}
-      break if !@selected_product.nil?
-      puts "#{greengrocer.products.first.id}から#{greengrocer.products.last.id}の数字を入力してください"
-    end
-  end
-
-  def decide_quantity
-    loop do
-      print "個数を入力 >"
-      @quantity_of_product = gets.to_i
-      puts "\n"
-      break if @quantity_of_product >= 1
-      puts "１個以上を選んでください。"
-    end
-  end
-end
-
-#八百屋１
-product_params1 = [
-  { name: "トマト", price: 100 },
-  { name: "にんじん", price: 200 },
-]
-# product_params1 の商品を持つ八百屋の開店
-greengrocer1 = Greengrocer.new(product_params1)
-#お客さんの来店
-user = User.new
-
-adding_products1 = [
-  { name: "かぼちゃ", price: 300 },
-  { name: "スイカ", price: 1000 },
-]
-# adding_products の商品を追加
-greengrocer1.register_product(adding_products1)
-
-# 商品を表示
-greengrocer1.disp
-# 商品の決定
-user.choose(greengrocer1)
-# 個数を訊ねる
-greengrocer1.ask_quantity(user)
-# 個数を決める
-user.decide_quantity
-# 金額を計算する
-greengrocer1.calculate_charges(user)
